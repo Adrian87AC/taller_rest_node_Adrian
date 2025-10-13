@@ -85,12 +85,58 @@ CREATE TABLE products (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+INSERT INTO products (name, price, stock, sku) VALUES
+('Teclado Mecánico RGB', 79.99, 25, 'KB-001'),
+('Ratón Inalámbrico', 29.90, 50, 'MS-002'),
+('Monitor 24 Pulgadas', 149.00, 15, 'MN-024'),
+('Auriculares Bluetooth', 59.90, 30, 'HP-010'),
+('Cámara Web HD', 39.95, 18, 'WB-005'),
+('Base Refrigerante Portátil', 24.50, 20, 'COOL-07'),
+('Cable HDMI 2m', 9.99, 100, 'HDMI-002'),
+('Disco SSD 1TB', 89.00, 10, 'SSD-01T'),
+('Altavoz Portátil', 49.90, 40, 'SPK-004'),
+('Micrófono USB', 59.00, 12, 'MIC-009');
+
 CREATE TABLE customers (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(120) NOT NULL,
   email VARCHAR(150) UNIQUE NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO customers (name, email) VALUES
+('Carlos Pérez', 'carlos.perez@example.com'),
+('Laura Gómez', 'laura.gomez@example.com'),
+('Andrés López', 'andres.lopez@example.com'),
+('Marta Fernández', 'marta.fernandez@example.com'),
+('Lucía Sánchez', 'lucia.sanchez@example.com'),
+('Javier Ruiz', 'javier.ruiz@example.com'),
+('Paula Torres', 'paula.torres@example.com'),
+('José Martínez', 'jose.martinez@example.com'),
+('Sofía Herrera', 'sofia.herrera@example.com'),
+('Raúl Morales', 'raul.morales@example.com');
+
+
+CREATE TABLE addresses (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  customer_id INT NOT NULL,
+  street VARCHAR(150) NOT NULL,
+  city VARCHAR(100) NOT NULL,
+  province VARCHAR(100),
+  postal_code VARCHAR(10),
+  country VARCHAR(100) DEFAULT 'España',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE
+);
+
+INSERT INTO addresses (customer_id, street, city, province, postal_code, country) VALUES
+(1, 'Calle Sevilla 12', 'Sevilla', 'Sevilla', '41001', 'España'),
+(1, 'Avenida de la Palmera 45', 'Sevilla', 'Sevilla', '41012', 'España'),
+(2, 'Calle Gran Vía 8', 'Madrid', 'Madrid', '28013', 'España'),
+(3, 'Calle San Vicente 22', 'Valencia', 'Valencia', '46002', 'España'),
+(4, 'Paseo de Gracia 99', 'Barcelona', 'Barcelona', '08008', 'España');
+
+
 ```
 
 ### 9️⃣ Copiar el contenido de los archivos
