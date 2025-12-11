@@ -1,8 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import { testConnection } from "./db.js";
-import productsRouter from "./routes/products.routes.js";
-import customersRouter from "./routes/customers.routes.js";
+import productsRouter from "./src/routes/productos.routes.js";
+import customersRouter from "./src/routes/clientes.routes.js";
 
 dotenv.config();
 const app = express();
@@ -24,11 +24,12 @@ app.get("/health", async (req, res) => {
 });
 
 // Rutas API
-app.use("/api/products", productsRouter);
-app.use("/api/customers", customersRouter);
+app.use("/productos", productsRouter);
+app.use("/clientes", customersRouter);
 
 // Puerto
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor escuchando en http://localhost:${PORT}`);
 });
+

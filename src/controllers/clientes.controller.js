@@ -1,4 +1,4 @@
-import * as service from "../services/customers.service.js";
+import * as service from "../services/clientes.service.js";
 
 /*
 export async function getAllCustomers(req, res) {

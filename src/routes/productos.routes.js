@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as ctrl from "../controllers/products.controller.js";
+import * as ctrl from "../controllers/productos.controller.js";
 const router = Router();
 
 router.get("/", ctrl.getAllProducts);

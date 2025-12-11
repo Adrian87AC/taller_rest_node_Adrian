@@ -23,12 +23,13 @@ dotenv.config();
  * Esto evita incluir credenciales o datos sensibles directamente en el código fuente.
  */
 export const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "",
+  database: "workshop",
   waitForConnections: true,
-  connectionLimit: Number(process.env.DB_CONN_LIMIT || 10),
+  connectionLimit: Number(15),
   queueLimit: 0,
 });
 
@@ -42,3 +43,11 @@ export async function testConnection() {
     process.exit(1);
   }
 }
+
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+
+// ACTIVAR CORS PARA TODAS LAS PETICIONES
+app.use(cors());
